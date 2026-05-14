@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bistro 256 Campaign — Social Media | CodeCanvas Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --white: #FAFAFA;
+    --red:   #E63329;
+    --gold:  #F5C842;
+    --warm:  #1A1208;
+    --mid:   #888;
+    --card:  #141414;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Huge background text */
+  .hero-bg-text {
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 18vw, 240px);
+    color: rgba(255,255,255,0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 6%;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .project-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .project-tag::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--gold);
+  }
+
+  .hero-badge-chip {
+    background: rgba(245,200,66,0.1);
+    border: 1px solid rgba(245,200,66,0.25);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-body {
+    padding: 64px 6% 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 9vw, 140px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .hero-title .red  { color: var(--red); }
+  .hero-title .gold { color: var(--gold); }
+
+  .hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+  }
+
+  .info-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .info-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 2px; }
+  .info-val   { font-size: 14px; font-weight: 600; }
+
+  .big-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .big-number-label { font-size: 13px; color: var(--mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── INSTAGRAM GRID MOCKUP ── */
+  .ig-mockup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+
+  .ig-profile {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px 12px 0 0;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2px;
+  }
+
+  .ig-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px var(--black), 0 0 0 4px var(--gold);
+  }
+
+  .ig-handle { font-size: 14px; font-weight: 700; }
+  .ig-bio    { font-size: 11px; color: var(--mid); }
+
+  .ig-stats-row {
+    display: flex; gap: 24px; margin-top: 8px;
+  }
+
+  .ig-stat-v { font-size: 15px; font-weight: 800; }
+  .ig-stat-l { font-size: 10px; color: var(--mid); }
+
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  /* Each post in the grid */
+  .post {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: opacity 0.2s;
+  }
+
+  .post:hover { opacity: 0.8; }
+
+  .post-inner {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Post type A: Dark with big type */
+  .pa { background: var(--warm); }
+  /* Post type B: Red background */
+  .pb { background: var(--red); }
+  /* Post type C: Gold/warm */
+  .pc { background: #1A1000; }
+  /* Post type D: White */
+  .pd { background: var(--white); color: var(--black); }
+  /* Post type E: Pattern */
+  .pe { background: linear-gradient(135deg, #1A0A00, var(--warm)); }
+
+  .post-emoji { font-size: clamp(28px, 4vw, 40px); margin-bottom: 6px; }
+
+  .post-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 2.5vw, 24px);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+
+  .post-sub {
+    font-size: clamp(7px, 1vw, 10px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  .post-tag {
+    position: absolute;
+    bottom: 6px; right: 6px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Highlight stripe on some posts */
+  .post-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+
+  /* ── DELIVERABLES SECTION ── */
+  .del-section {
+    padding: 96px 6%;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .del-inner { max-width: 1200px; margin: 0 auto; }
+
+  .del-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .del-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 64px;
+  }
+
+  .del-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .del-item {
+    background: var(--card);
+    padding: 28px 20px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .del-item:hover { background: #1a1a1a; }
+
+  .del-count { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--red); line-height: 1; margin-bottom: 6px; }
+  .del-name  { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .del-sub   { font-size: 10px; color: var(--mid); line-height: 1.5; }
+
+  /* ── FORMAT SECTION ── */
+  .format-section {
+    background: var(--red);
+    padding: 80px 6%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .format-section::before {
+    content: 'FORMATS';
+    position: absolute;
+    top: -20px; left: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 160px;
+    color: rgba(0,0,0,0.1);
+    letter-spacing: -0.02em;
+    pointer-events: none;
+  }
+
+  .format-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .format-card {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .format-shape { font-size: 36px; margin-bottom: 12px; }
+  .format-name  { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .format-size  { font-size: 11px; color: rgba(255,255,255,0.5); font-family: 'Manrope', monospace; }
+
+  /* ── RESULTS ── */
+  .results-section {
+    padding: 80px 6%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .result-item {
+    background: var(--black);
+    padding: 48px 32px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .result-item:last-child { border-right: none; }
+
+  .result-val { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; margin-bottom: 8px; }
+  .rv-red  { color: var(--red); }
+  .rv-gold { color: var(--gold); }
+  .result-label { font-size: 12px; color: var(--mid); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Footer */
+  .footer {
+    padding: 40px 6%;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.05em; color: var(--gold); }
+  .footer-tag  { font-size: 12px; color: var(--mid); }
+  .footer-cc   { font-size: 11px; color: rgba(136,136,136,0.4); }
+
+  @media (max-width: 768px) {
+    .hero-body { grid-template-columns: 1fr; }
+    .del-grid { grid-template-columns: 1fr 1fr; }
+    .format-grid { grid-template-columns: 1fr 1fr; }
+    .results-section { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-bg-text">BISTRO 256</div>
+
+  <div class="hero-top">
+    <div class="project-tag">Social Media Campaign</div>
+    <div class="hero-badge-chip">30 Pieces · Graphics</div>
+  </div>
+
+  <div class="hero-body">
+    <!-- Left -->
+    <div>
+      <h1 class="hero-title">
+        BISTRO<br>
+        <span class="red">256</span><br>
+        <span class="gold">SOCIAL</span><br>
+        FEED
+      </h1>
+
+      <div class="hero-info">
+        <div class="info-row">
+          <div class="info-dot"></div>
+          <div>
+            <div class="info-label">Client</div>
+            <div class="info-val">Bistro 256 Restaurant Chain — Kampala</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-dot"></div>
+          <div>
+            <div class="info-label">Scope</div>
+            <div class="info-val">30-piece social media content pack for Instagram &amp; Facebook</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-dot"></div>
+          <div>
+            <div class="info-label">Platforms</div>
+            <div class="info-val">Instagram · Facebook · WhatsApp Status</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="big-number">30</div>
+        <div class="big-number-label">Graphic Designs Delivered</div>
+      </div>
+    </div>
+
+    <!-- Right: Instagram feed mockup -->
+    <div class="ig-mockup">
+      <div class="ig-profile">
+        <div class="ig-avatar">🍽️</div>
+        <div>
+          <div class="ig-handle">@bistro256.ug</div>
+          <div class="ig-bio">Fine dining · Kampala, Uganda 🇺🇬</div>
+          <div class="ig-stats-row">
+            <div><div class="ig-stat-v">12.4K</div><div class="ig-stat-l">Followers</div></div>
+            <div><div class="ig-stat-v">248</div><div class="ig-stat-l">Posts</div></div>
+            <div><div class="ig-stat-v">4.7%</div><div class="ig-stat-l">Engagement</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ig-grid">
+        <!-- Row 1 -->
+        <div class="post pa">
+          <div class="post-inner">
+            <div class="post-stripe"></div>
+            <div class="post-emoji">🍖</div>
+            <div class="post-text" style="color:var(--gold);">GRILL<br>NIGHT</div>
+            <div class="post-sub">Every Friday</div>
+          </div>
+          <div class="post-tag">Promo</div>
+        </div>
+        <div class="post pb">
+          <div class="post-inner">
+            <div class="post-text" style="font-size:clamp(22px,4vw,36px);">CHEF'S<br>SPECIAL</div>
+            <div class="post-sub" style="color:rgba(255,255,255,0.7);">This Week</div>
+          </div>
+          <div class="post-tag">Menu</div>
+        </div>
+        <div class="post pd">
+          <div class="post-inner">
+            <div class="post-emoji">☕</div>
+            <div class="post-text" style="color:var(--black);">MORNING<br>BREW</div>
+            <div class="post-sub" style="color:rgba(0,0,0,0.4);">7AM – 11AM</div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="post pc">
+          <div class="post-inner">
+            <div class="post-emoji">🥗</div>
+            <div class="post-text" style="color:var(--white);">FRESH<br>SALADS</div>
+          </div>
+        </div>
+        <div class="post" style="background:linear-gradient(135deg,var(--warm),#2A1500);">
+          <div class="post-inner">
+            <div class="post-stripe"></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,56px);color:var(--gold);line-height:1;">256</div>
+            <div class="post-sub">BISTRO</div>
+          </div>
+          <div class="post-tag">Brand</div>
+        </div>
+        <div class="post pb">
+          <div class="post-inner">
+            <div class="post-emoji">🎂</div>
+            <div class="post-text">BOOK<br>EVENTS</div>
+            <div class="post-sub" style="color:rgba(255,255,255,0.7);">+256 700 256 256</div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="post pd">
+          <div class="post-inner">
+            <div class="post-stripe" style="background:var(--red);"></div>
+            <div class="post-emoji">🍕</div>
+            <div class="post-text" style="color:var(--black);">HAPPY<br>HOUR</div>
+          </div>
+        </div>
+        <div class="post pa">
+          <div class="post-inner">
+            <div class="post-emoji">🥩</div>
+            <div class="post-text" style="color:var(--red);">STEAK<br>SUNDAYS</div>
+          </div>
+          <div class="post-tag">Weekly</div>
+        </div>
+        <div class="post" style="background:#0D1A00;">
+          <div class="post-inner">
+            <div class="post-emoji">🌿</div>
+            <div class="post-text" style="color:#7BC67E;">VEGAN<br>MENU</div>
+            <div class="post-sub">NEW</div>
+          </div>
+          <div class="post-tag">Menu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DELIVERABLES ── -->
+<div class="del-section">
+  <div class="del-inner">
+    <div class="del-label">What Was Delivered</div>
+    <h2 class="del-title">30 PIECES.<br>ZERO<br><span style="color:var(--red);">FILLER.</span></h2>
+    <div class="del-grid">
+      <div class="del-item">
+        <div class="del-count">10</div>
+        <div class="del-name">Feed Posts</div>
+        <div class="del-sub">Square 1080×1080px for the Instagram grid</div>
+      </div>
+      <div class="del-item">
+        <div class="del-count">8</div>
+        <div class="del-name">Stories</div>
+        <div class="del-sub">Vertical 1080×1920px animated templates</div>
+      </div>
+      <div class="del-item">
+        <div class="del-count">5</div>
+        <div class="del-name">Reels Covers</div>
+        <div class="del-sub">Eye-catching thumbnail covers for video reels</div>
+      </div>
+      <div class="del-item">
+        <div class="del-count">4</div>
+        <div class="del-name">Facebook Banners</div>
+        <div class="del-sub">Cover photo and event banner templates</div>
+      </div>
+      <div class="del-item">
+        <div class="del-count">3</div>
+        <div class="del-name">WhatsApp Status</div>
+        <div class="del-sub">Daily specials status for WhatsApp Business</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FORMATS ── -->
+<div class="format-section">
+  <div class="format-inner">
+    <div class="del-label" style="color:rgba(255,255,255,0.6);">File Formats</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:1;color:white;">All formats. Ready to post.</h2>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="format-shape">🟥</div>
+        <div class="format-name">Feed Post</div>
+        <div class="format-size">1080 × 1080px</div>
+      </div>
+      <div class="format-card">
+        <div class="format-shape">📱</div>
+        <div class="format-name">Story / Status</div>
+        <div class="format-size">1080 × 1920px</div>
+      </div>
+      <div class="format-card">
+        <div class="format-shape">🖼️</div>
+        <div class="format-name">Cover Photo</div>
+        <div class="format-size">1200 × 630px</div>
+      </div>
+      <div class="format-card">
+        <div class="format-shape">🎬</div>
+        <div class="format-name">Reel Cover</div>
+        <div class="format-size">1080 × 1350px</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS ── -->
+<div class="results-section">
+  <div class="result-item">
+    <div class="result-val rv-red">+89%</div>
+    <div class="result-label">Reach Increase</div>
+  </div>
+  <div class="result-item">
+    <div class="result-val rv-gold">4.7%</div>
+    <div class="result-label">Engagement Rate</div>
+  </div>
+  <div class="result-item">
+    <div class="result-val rv-red">12K</div>
+    <div class="result-label">New Followers</div>
+  </div>
+  <div class="result-item">
+    <div class="result-val rv-gold">3×</div>
+    <div class="result-label">Table Bookings</div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-name">Bistro 256 Campaign</div>
+  <div class="footer-tag">Graphics · Social Media · 30 Pieces · 2026</div>
+  <div class="footer-cc">A CodeCanvas Project · elijahenrique8@gmail.com</div>
+</footer>
+
+</body>
+</html>
